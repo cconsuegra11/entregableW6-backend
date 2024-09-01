@@ -5,11 +5,11 @@ const routerCart = express.Router();
 
 routerCart.route('/')
     .get(getAll)
+    .delete(remove)
     .post(create);
 
 routerCart.route('/:id')
     .get(getOne)
-    .delete(remove)
     .put(update);
 
 module.exports = routerCart;
