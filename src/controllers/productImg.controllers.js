@@ -1,7 +1,7 @@
 const catchError = require('../utils/catchError');
 const ProductImg = require('../models/ProductImg');
 const Product = require('../models/Product');
-const uploadToCloudinary = require('../utils/uploadFiledCloudinary');
+const cloudinaryImg = require('../utils/cloudinaryImg');
 
 // --> GET
 const getAll = catchError(async(req, res) => {
@@ -27,7 +27,7 @@ const uploadImg = catchError(async(req, res) => {
     if (!req.file) throw { status: 400, message: 'No file uploaded'}
      
     const file = req.file
-    const uploadResult = await uploadToCloudinary(file.buffer);
+    const uploadResult = await cloudinaryImg(file.buffer);
     const result = await ProductImg.create({ url: uploadResult.secure_url, fileName: uploadResult.public_id, productId });
     return res.status(201).json(result);
   });

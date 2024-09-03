@@ -9,6 +9,6 @@ routerProductImg.route('/')
     .post(upload.single('image'), uploadImg);
 
 routerProductImg.route('/:id')
-    .delete(remove)
+    .delete(remove);
 
 module.exports = routerProductImg;

@@ -1,7 +1,7 @@
-const cloudinary = require('./cloudinary.config');
+const cloudinary = require('./clodinary.config');
 const stream = require('stream');
 
-const uploadToCloudinary = (fileBuffer, fileName) => new Promise((resolve, reject) => {
+const cloudinaryImg = (fileBuffer, fileName) => new Promise((resolve, reject) => {
   const fileStream = new stream.PassThrough();
   fileStream.end(fileBuffer)
 
@@ -19,4 +19,4 @@ const uploadToCloudinary = (fileBuffer, fileName) => new Promise((resolve, rejec
   fileStream.pipe(uploadResponse)
 })
 
-module.exports = uploadToCloudinary
+module.exports = cloudinaryImg

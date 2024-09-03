@@ -5,6 +5,7 @@ const Cart = require('../models/Cart');
 // --> GET
 const getAll = catchError(async(req, res) => {
     const userId = req.user.id
+    console.log('lo que sea', userId)
     const userCart = await Cart.findAll({ where: { userId }, 
       include: [
         {
