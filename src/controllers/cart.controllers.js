@@ -1,11 +1,12 @@
 const catchError = require('../utils/catchError');
 const Cart = require('../models/Cart');
+const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 
 // --> GET
 const getAll = catchError(async(req, res) => {
     const userId = req.user.id
-    console.log('lo que sea', userId)
     const userCart = await Cart.findAll({ where: { userId }, 
       include: [
         {
@@ -49,8 +50,6 @@ const create = catchError(async(req, res) => {
 const getOne = catchError(async(req, res) => {
     const userId = req.user.id;
     const id = req.params.id
-    const intId = parseInt(id)
-    if (userId !== intId)  throw { message: 'You do not have sufficient permissions.' }
 
     const cart = await Cart.findByPk(id , {
       where: { userId },
